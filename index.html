@@ -13,7 +13,7 @@
 
 html, body{
   max-width:100%;
-  overflow-x:hidden !important;
+  
 }
 
 
@@ -46,7 +46,7 @@ nav ul li a:hover{
 *{
   margin:0;
   padding:0;
-  box-sizing:border-box;
+  box-sizing: content-box;
   font-family: Inter, system-ui, sans-serif;
 }
 
@@ -536,6 +536,10 @@ p{
   cursor:pointer;
 }
 
+.con{
+  size-adjust: inherit;
+}
+
 .logo-img{
   position:relative;
   background:#fff;
@@ -582,6 +586,30 @@ p{
 }
 
 
+.case-study h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.case-study .industry {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+.case-study h4 {
+  margin-top: 18px;
+  font-size: 16px;
+}
+
+.case-study p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+
+
 /* HOVER EFFECT */
 .logo-img:hover .eye{
   opacity:1;
@@ -616,15 +644,25 @@ p{
 }
 
 /* MODAL */
-.case-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+.case-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;   /* 🔥 THIS LINE MATTERS */
+  transition: opacity 0.3s ease;
+  z-index: 999;
 }
+
+.case-modal.active {
+  opacity: 1;
+  pointer-events: auto;   /* 🔥 enables clicks ONLY when active */
+}
+
 
 .case-modal.active{
   display:flex;
@@ -654,7 +692,7 @@ p{
   position: relative;
 
   /* FULL SCREEN WIDTH */
-  width: 100vw;
+  width: 100%;
   margin-left: calc(50% - 50vw);
 
   padding:160px 80px;
@@ -1319,6 +1357,19 @@ img{
 }
 
 
+* {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+.section,
+.logo-card,
+.case-study {
+  will-change: transform, opacity;
+}
+
+
 
 </style>
 </head>
@@ -1550,9 +1601,9 @@ img{
     </div>
 
     <!-- CARD 5 -->
-<div class="logo-card reveal" data-case="case-extra1">
+<div class="logo-card reveal" data-case="case-mhilpur">
   <div class="logo-img">
-    <img src="IMGS/mhilpurghlogo.png" alt="Extra Logo 1">
+    <img src="IMGS/mhilpurghlogo.png" alt="Mahilpur Glass House">
     <div class="eye">👁</div>
   </div>
   <h4>Mahilpur Glass House</h4>
@@ -1560,13 +1611,13 @@ img{
 </div>
 
 <!-- CARD 6 -->
-<div class="logo-card reveal" data-case="case-extra2">
+<div class="logo-card reveal" data-case="case-bnke">
   <div class="logo-img">
-    <img src="IMGS/extra2.png" alt="Extra Logo 2">
+    <img src="IMGS/bnkebiharilogo.png" alt="Baanke Bihari Boutique">
     <div class="eye">👁</div>
   </div>
-  <h4>Extra Brand Two</h4>
-  <span>• Brand Category</span>
+  <h4>Baanke Bihari Boutique</h4>
+  <span>• Deals in custome handmade cloths of Baanke Bihari ji</span>
 </div>
 
 
@@ -1874,11 +1925,210 @@ const cases = {
   "case-gs": "<h2>GS Nhotay</h2><p>Case study content here</p>",
   "case-joshi": "<h2>Joshi Traders</h2><p>Case study content here</p>",
   "case-dhaba": "<h2>Punjabi Dhaba</h2><p>Case study content here</p>",
-  "case-nice": "<h2>Nice Day</h2><p>Case study content here</p>"
-  
+  "case-nice": "<h2>Nice Day</h2><p>Case study content here</p>",
+  "case-mhilpur" : "<h2>Extra Brand One</h2><p>Case study content here</p>",
+  "case-bnke" : "<h2>Extra Brand Two</h2><p>Case study content here</p>"
 };
-cases["case-extra1"] = "<h2>Extra Brand One</h2><p>Case study content here</p>";
-cases["case-extra2"] = "<h2>Extra Brand Two</h2><p>Case study content here</p>";
+
+
+cases["case-gs"] = `
+<section class="case-study">
+  <h3>GS Nhotay Computers</h3>
+  <p class="industry">Industry: Computers & IT Services</p>
+
+  <h4>Objective</h4>
+  <p>
+    To design a modern, trustworthy logo that represents technical expertise,
+    reliability, and professionalism in the IT services domain.
+  </p>
+
+  <h4>Concept & Strategy</h4>
+  <p>
+    A custom “GS” monogram was created to merge both initials into a single,
+    compact symbol. The circular form represents system integrity, continuity,
+    and security — key values in the technology sector.
+  </p>
+
+  <h4>Design Execution</h4>
+  <p>
+    The icon subtly resembles a power-button form, reinforcing the computing
+    theme. Clean sans-serif typography and a navy–blue color palette were used
+    to convey trust, intelligence, and modernity.
+  </p>
+
+  <h4>Final Outcome</h4>
+  <p>
+    A scalable, professional logo suitable for storefronts, invoices, visiting
+    cards, and digital platforms, giving the brand a confident and credible
+    identity.
+  </p>
+</section>
+`;
+
+cases["case-joshi"] = `
+<section class="case-study">
+  <h3>Joshi Traders</h3>
+  <p class="industry">Industry: PVC Walls & Interior Solutions</p>
+
+  <h4>Objective</h4>
+  <p>
+    To create a bold and durable logo identity that reflects strength,
+    structure, and reliability in the construction and interior solutions
+    industry.
+  </p>
+
+  <h4>Concept & Strategy</h4>
+  <p>
+    The logo is built around a strong “JT” monogram, designed using structured
+    lines inspired by wall panels and architectural layouts.
+  </p>
+
+  <h4>Design Execution</h4>
+  <p>
+    Bold typography and high-contrast black-and-white colors were chosen to
+    communicate authority and professionalism. The minimal approach ensures
+    clarity and easy recognition.
+  </p>
+
+  <h4>Final Outcome</h4>
+  <p>
+    A no-nonsense, industry-appropriate logo that positions Joshi Traders as a
+    dependable name in PVC wall systems and interior materials.
+  </p>
+</section>
+`;
+
+cases["case-dhaba"] = `
+<section class="case-study">
+  <h3>Punjabi Dhaba</h3>
+  <p class="industry">Industry: Food & Hospitality</p>
+
+  <h4>Objective</h4>
+  <p>
+    To design a culturally rich logo that represents authentic Punjabi food,
+    tradition, and warm hospitality.
+  </p>
+
+  <h4>Concept & Strategy</h4>
+  <p>
+    The logo draws inspiration from Punjabi heritage architecture and
+    traditional dhaba visuals to create an instantly recognizable cultural
+    identity.
+  </p>
+
+  <h4>Design Execution</h4>
+  <p>
+    A circular badge format was used with warm red and yellow tones to evoke
+    appetite and nostalgia. Illustrative elements enhance the traditional
+    Punjabi vibe.
+  </p>
+
+  <h4>Final Outcome</h4>
+  <p>
+    A vibrant and welcoming logo suitable for signage, menus, packaging, and
+    branding, effectively capturing the essence of Punjabi cuisine.
+  </p>
+</section>
+`;
+
+cases["case-nice"] = `
+<section class="case-study">
+  <h3>Nice Day</h3>
+  <p class="industry">Industry: Retail / Family Shopping Mall</p>
+
+  <h4>Objective</h4>
+  <p>
+    To create a friendly and positive brand identity that appeals to families
+    and everyday shoppers.
+  </p>
+
+  <h4>Concept & Strategy</h4>
+  <p>
+    The logo concept revolves around optimism and comfort, using natural
+    elements to reflect a pleasant shopping experience.
+  </p>
+
+  <h4>Design Execution</h4>
+  <p>
+    A rising sun symbol combined with a green landscape was used to represent
+    freshness and positivity. Bold typography ensures high visibility and easy
+    recall.
+  </p>
+
+  <h4>Final Outcome</h4>
+  <p>
+    A cheerful and approachable logo that feels welcoming, trustworthy, and
+    perfectly aligned with a family-oriented retail environment.
+  </p>
+</section>
+`;
+
+cases["case-mhilpur"] = `
+<section class="case-study">
+  <h3>Mahilpur Glass House</h3>
+  <p class="industry">Industry: Glass & Kitchen Fittings</p>
+
+  <h4>Objective</h4>
+  <p>
+    To design a professional logo that represents structure, transparency, and
+    modern building solutions.
+  </p>
+
+  <h4>Concept & Strategy</h4>
+  <p>
+    The logo integrates architectural arrows forming a house-like structure,
+    symbolizing growth, direction, and construction expertise.
+  </p>
+
+  <h4>Design Execution</h4>
+  <p>
+    The initials “GH” were placed centrally for brand recall, while subtle glass
+    and wood cues reference the materials offered by the business.
+  </p>
+
+  <h4>Final Outcome</h4>
+  <p>
+    A clean and functional logo that works effectively for shop branding,
+    hoardings, and business stationery.
+  </p>
+</section>
+`;
+
+
+cases["case-bnke"] = `
+<section class="case-study">
+  <h3>Baanke Bihari Boutique</h3>
+  <p class="industry">Industry: Fashion & Traditional Clothing</p>
+
+  <h4>Objective</h4>
+  <p>
+    To create an elegant and devotional logo for a boutique specializing in
+    custom handmade clothing inspired by Baanke Bihari Ji.
+  </p>
+
+  <h4>Concept & Strategy</h4>
+  <p>
+    The logo blends spiritual symbolism with ornamental design, reflecting both
+    devotion and artistic craftsmanship.
+  </p>
+
+  <h4>Design Execution</h4>
+  <p>
+    A mandala-inspired form combined with a peacock feather was used to signify
+    grace and spirituality. Decorative typography and rich colors enhance the
+    premium traditional feel.
+  </p>
+
+  <h4>Final Outcome</h4>
+  <p>
+    A distinctive and emotionally resonant logo ideal for boutique signage,
+    clothing tags, packaging, and branding materials.
+  </p>
+</section>
+
+`;
+
+
 cases["dp-1"] = "<h2>Social Media Posts</h2><p>Case study for social media designs.</p>";
 cases["dp-2"] = "<h2>Brand Campaign</h2><p>Campaign strategy & visuals.</p>";
 cases["dp-3"] = "<h2>Promotional Creatives</h2><p>Marketing creatives & ads.</p>";
@@ -2058,3 +2308,5 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 </body>
 </html>
+
+
